@@ -56,14 +56,12 @@ public class Main {
             JSONParser parser = new JSONParser();
             JSONObject rootObj = (JSONObject) parser.parse(new FileReader("data.json"));
 
-            // Extract keys object
             JSONObject keysObj = (JSONObject) rootObj.get("keys");
             int n = ((Long) keysObj.get("n")).intValue();
             int k = ((Long) keysObj.get("k")).intValue();
 
             List<DataPoint> points = new ArrayList<>();
 
-            // Iterate through keys 1 to n collecting points until have k roots
             for (int i = 1; i <= n && points.size() < k; i++) {
                 JSONObject pointObj = (JSONObject) rootObj.get(String.valueOf(i));
                 if (pointObj != null) {
